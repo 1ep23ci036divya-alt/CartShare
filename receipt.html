@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receipt — CartShare</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧾</text></svg>">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/receipt.css">
+</head>
+<body>
+
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-4 no-print">
+    <button id="backBtn" class="btn btn-ghost">&larr; Back to room</button>
+    <button id="printBtn" class="btn btn-lime">🖨️ Print receipt</button>
+  </div>
+
+  <div class="receipt-sheet card-soft mx-auto p-4 p-md-5">
+    <div class="text-center mb-4">
+      <div class="brand justify-content-center mb-1">
+        <span class="brand-basket">🛒</span>
+        <span class="brand-name">Cart<span>Share</span></span>
+      </div>
+      <div class="footer-note">Room <span id="receiptRoomCode" class="mono fw-700"></span></div>
+    </div>
+
+    <hr class="dashed">
+
+    <table class="table receipt-table mb-2">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th class="text-center">Qty</th>
+          <th class="text-end">Amount</th>
+        </tr>
+      </thead>
+      <tbody id="receiptBody"></tbody>
+    </table>
+
+    <hr class="dashed">
+
+    <div class="d-flex justify-content-between total-line">
+      <span class="fw-800">TOTAL</span>
+      <span id="receiptTotal" class="fw-800"></span>
+    </div>
+
+    <hr class="dashed">
+
+    <div class="mb-2">
+      <div class="fw-700 mb-2">Added by</div>
+      <ul id="addedByList" class="added-by-list list-unstyled mb-0"></ul>
+    </div>
+
+    <hr class="dashed">
+
+    <div class="d-flex justify-content-between footer-note">
+      <span>Date</span>
+      <span id="receiptDate"></span>
+    </div>
+  </div>
+
+  <p class="text-center footer-note mt-4 no-print">
+    Split the total by who added what, or divide it evenly — the choice is yours.
+  </p>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/receipt.js"></script>
+</body>
+</html>

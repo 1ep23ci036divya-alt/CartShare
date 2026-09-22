@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CartShare — Split the shopping, not the chat</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛒</text></svg>">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<div class="container py-4 py-md-5">
+
+  <header class="d-flex justify-content-between align-items-center mb-5">
+    <div class="brand">
+      <span class="brand-basket">🛒</span>
+      <span class="brand-name">Cart<span>Share</span></span>
+    </div>
+    <span class="chip d-none d-sm-inline-flex">No sign-up. Just a name and a code.</span>
+  </header>
+
+  <main class="row g-5 align-items-center">
+
+    <!-- LEFT: Story / value prop -->
+    <section class="col-lg-6">
+      <h1 class="display-5 fw-800 hero-heading mb-3">
+        Four roommates, one grocery run, zero "wait who's paying?"
+      </h1>
+      <p class="lead text-ink-soft mb-4">
+        Skip the scattered WhatsApp thread. Open a Room, drop in what you need,
+        and watch the cart — and the bill — build itself in real time.
+      </p>
+
+      <ol class="how-steps list-unstyled mb-4">
+        <li>
+          <span class="step-mark">1</span>
+          <div>
+            <strong>Create or join</strong> a room with a short code — that's the whole login.
+          </div>
+        </li>
+        <li>
+          <span class="step-mark">2</span>
+          <div>
+            <strong>Add items</strong> as you think of them — everyone's tab updates automatically.
+          </div>
+        </li>
+        <li>
+          <span class="step-mark">3</span>
+          <div>
+            <strong>Print the receipt</strong> when the order lands, split fairly by who added what.
+          </div>
+        </li>
+      </ol>
+
+      <div class="d-flex gap-4 flex-wrap sample-room mono">
+        <div>
+          <div class="text-ink-soft small">Room</div>
+          <div class="fw-700">ABC123</div>
+        </div>
+        <div>
+          <div class="text-ink-soft small">Milk</div>
+          <div class="fw-700">2 × ₹50</div>
+        </div>
+        <div>
+          <div class="text-ink-soft small">Bread</div>
+          <div class="fw-700">1 × ₹40</div>
+        </div>
+        <div>
+          <div class="text-ink-soft small">Total</div>
+          <div class="fw-700">₹224</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Auth card -->
+    <section class="col-lg-6">
+      <div class="card-soft p-4 p-md-5 auth-card mx-auto">
+
+        <div class="tab-toggle mb-4" role="tablist">
+          <button type="button" class="tab-btn active" data-tab="create" id="tabCreate">Create a room</button>
+          <button type="button" class="tab-btn" data-tab="join" id="tabJoin">Join a room</button>
+        </div>
+
+        <div class="mb-3">
+          <label for="userName" class="form-label">Your name</label>
+          <input type="text" id="userName" class="form-control" placeholder="e.g. Divya" maxlength="24" autocomplete="off">
+        </div>
+
+        <div id="joinCodeGroup" class="mb-3 d-none">
+          <label for="roomCode" class="form-label">Room code</label>
+          <input type="text" id="roomCode" class="form-control mono text-uppercase" placeholder="ABC123" maxlength="6" autocomplete="off">
+        </div>
+
+        <div id="errorMsg" class="alert alert-danger py-2 small d-none" role="alert"></div>
+
+        <button type="button" id="createRoomBtn" class="btn btn-lime w-100 mb-2">Create room</button>
+        <button type="button" id="joinRoomBtn" class="btn btn-outline-pink w-100 d-none">Join room</button>
+
+        <p class="footer-note text-center mt-3 mb-0">
+          Open this page in another tab with a different name to try it as a second roommate.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="text-center footer-note mt-5">
+    CartShare — a shared cart for shared living.
+  </footer>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

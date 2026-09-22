@@ -1,225 +1,144 @@
-CartShare – Collaborative Shopping Application
+# 🛒 CartShare
 
-1. Project Name
+A collaborative shopping-cart app for roommates, hostel groups, and anyone who's
+tired of tracking a grocery order across forty WhatsApp messages. Create a
+Room, share the code, and watch everyone's items — and the bill — build up
+live.
 
-CartShare
-
-CartShare is a collaborative shopping web application that allows a group of users to create or join a shared shopping room, manage a common shopping cart, track activities, and generate a printable receipt.
-
----
-
-2. Problem Statement
-
-In shared living or working environments such as student hostels, offices, or travel groups, coordinating common purchases can be difficult.
-
-People often use WhatsApp messages, notes, or spreadsheets to share their shopping requirements. This can result in:
-
-- Missed items
-- Duplicate purchases
-- Difficulty tracking who added an item
-- Difficulty calculating the total amount
-- Problems when splitting expenses
-
-CartShare provides a single shared platform to make group shopping easier and more organized.
+Built for the "CartShare" project brief with vanilla **HTML, CSS, JavaScript
+and Bootstrap 5**, using **browser storage** for persistence and cross-tab
+sync (no backend required).
 
 ---
 
-3. Features
+## Features
 
-User and Room Management
-
-- Enter user name
-- Create a new shopping room
-- Generate a unique room code
-- Join an existing room using the room code
-
-Shared Shopping Cart
-
-- Add items to the cart
-- Specify quantity
-- Add item price
-- Remove items
-- Calculate the total cart amount
-- Display who added each item
-
-Activity Log
-
-The application maintains an activity log showing actions performed by users.
-
-Example:
-
-- Divya added Milk × 2
-- Rahul added Bread × 1
-- Priya added Eggs × 12
-
-Collaboration
-
-Users in the same room can see cart changes through browser-based synchronization.
-
-Printable Receipt
-
-The application generates a clean receipt containing:
-
-- Room code
-- Items
-- Quantity
-- Price
-- Total amount
-- User who added each item
-- Date and time
-
-Responsive Design
-
-The application is designed to work on:
-
-- Desktop computers
-- Laptops
-- Tablets
-- Mobile phones
+- **Create / Join Room** — enter a name, create a room to get a unique
+  6-character code, or join an existing room with a code.
+- **Shared shopping cart** — add items with quantity and price, adjust
+  quantity with `+` / `−`, remove items, see a live running total and who
+  added each item.
+- **Real-time activity log** — a timestamped feed of every add / remove /
+  quantity change in the room.
+- **Cross-tab sync** — changes made in one browser tab appear automatically
+  in every other tab open on the same room, using the `storage` event
+  (no manual refresh needed).
+- **Printable receipt** — a clean, itemized summary with a total and a
+  per-person "added by" breakdown, ready to print or save as PDF.
+- **Responsive UI** — built with Flexbox, CSS Grid and Bootstrap so it works
+  on both mobile and desktop.
 
 ---
 
-4. Technologies Used
+## How it works (technical notes)
 
-- HTML5 – Structure of the web pages
-- CSS3 – Styling and responsive design
-- JavaScript – Application logic and interactions
-- Bootstrap – Responsive UI components
-- CSS Flexbox and Grid – Responsive layouts
-- Browser localStorage – Storing cart data
-- JavaScript Storage Events – Synchronizing changes between browser tabs
+- **Data persistence**: each room is stored in `localStorage` under
+  `cartshare_room_<CODE>` as a JSON object (`code`, `members`, `items`,
+  `activity`, `createdAt`).
+- **Identity**: your name for the current tab is stored in `sessionStorage`
+  (not `localStorage`) on purpose — this lets you open several tabs in the
+  *same* browser, sign each one in as a different roommate, and simulate
+  multiple users in one room for testing/demoing, while the room's cart data
+  itself lives in shared `localStorage` and stays in sync everywhere.
+- **Live sync**: `room.html` listens for the browser's native `storage`
+  event, which fires in every other tab whenever `localStorage` changes.
+  When it fires for the current room's key, the page re-renders the cart,
+  members and activity log — this is the "multi-tab collaboration" required
+  by the brief, implemented with no server.
+- **Printing**: `receipt.html` uses a `@media print` rule to hide navigation
+  buttons and print only the receipt sheet.
+
+> **Note on "real-time":** this implementation follows the brief's
+> specification exactly — collaboration via `localStorage` + the `storage`
+> event, which syncs across tabs/windows of the *same browser*. It's the
+> right scope for this syllabus-level project. A production version with
+> true cross-device, cross-network real-time sync would need a backend
+> (API + database + WebSockets or similar), as noted in the original
+> project brief.
 
 ---
 
-5. Project Structure
+## Project structure
 
+```
 CartShare/
 │
-├── index.html
+├── index.html          # Create / Join room
+├── room.html            # Shared cart + activity log
+├── receipt.html          # Printable receipt
 ├── README.md
 │
 ├── css/
-│   ├── style.css
-│   └── room.css
+│   ├── style.css        # Shared theme (neon lime + baby pink)
+│   ├── login.css
+│   ├── room.css
+│   └── receipt.css
 │
 ├── js/
-│   ├── login.js
-│   ├── room.js
-│   ├── cart.js
-│   ├── activity.js
-│   └── receipt.js
+│   ├── storage.js        # localStorage / sessionStorage helpers
+│   ├── login.js          # index.html logic
+│   ├── cart.js           # cart rendering + calculations
+│   ├── activity.js       # activity log rendering
+│   ├── room.js            # room.html controller + storage-event sync
+│   └── receipt.js        # receipt.html logic
 │
 └── assets/
-    ├── images/
-    └── icons/
+    ├── icons/
+    └── images/
+```
 
 ---
 
-6. How to Run the Project
+## Running it locally
 
-Method 1 – Using VS Code Live Server
+No build step or server is required.
 
-1. Download or clone the CartShare project.
-2. Open the project folder in Visual Studio Code.
-3. Install the Live Server extension if it is not already installed.
-4. Open "index.html".
-5. Right-click on "index.html".
-6. Select Open with Live Server.
-7. The application will open in your browser.
+1. Download / clone this folder.
+2. Open `index.html` directly in a browser, **or** serve it locally for a
+   cleaner experience:
+   ```bash
+   npx serve .
+   # or
+   python3 -m http.server 8000
+   ```
+3. Create a room, then open `index.html` in a **second tab** and join with
+   the same room code under a different name to see live sync in action.
 
-Method 2 – Open Directly
+## Deployment
 
-The "index.html" file can also be opened directly in a web browser if the project does not require a local server.
+Deploy as a static site on any of the following (no environment variables
+or backend needed):
 
----
+- **Vercel** — `vercel deploy` from the project folder, or import the repo
+  in the Vercel dashboard.
+- **Netlify** — drag-and-drop the folder onto Netlify, or connect the repo.
+- **GitHub Pages** — push to a repo and enable Pages on the `main` branch
+  (root directory).
 
-7. How to Create a Room
-
-1. Open the CartShare application.
-2. Enter your name.
-3. Click Create Room.
-4. The application generates a unique room code.
-5. Share the room code with other participants.
-6. Click Go to Room to open the shared shopping cart.
-
-Example:
-
-Room Code: ABC123
-
----
-
-8. How to Join a Room
-
-1. Open the CartShare application.
-2. Enter your name.
-3. Enter the room code received from another participant.
-4. Click Join Room.
-5. You will enter the shared shopping cart.
-
-Example:
-
-Name: Rahul
-Room Code: ABC123
-
-[ Join Room ]
+Because sync relies on `localStorage`, test the "Room" functionality across
+multiple tabs of the **same browser on the same device** — that's the
+scope described in the brief.
 
 ---
 
-9. How Collaboration Works
+## Submission checklist
 
-CartShare uses browser storage to maintain cart information.
+- [x] User name / login
+- [x] Create room
+- [x] Join room using code
+- [x] Unique room code
+- [x] Add item
+- [x] Remove item
+- [x] Quantity controls
+- [x] Price calculation
+- [x] Shared cart
+- [x] Activity log
+- [x] Browser storage persistence
+- [x] Multi-tab synchronization
+- [x] Responsive UI (mobile + desktop)
+- [x] Printable receipt
+- [ ] GitHub repository — push this folder and link it
+- [ ] Live deployment — deploy and submit the URL
 
-When a user adds or removes an item:
-
-1. The cart data is updated.
-2. The updated information is stored in the browser.
-3. JavaScript detects the storage change.
-4. The cart interface is updated in the other browser tabs.
-
-Example:
-
-User 1
-Divya adds Milk × 2
-        ↓
-Cart data updated
-        ↓
-Browser storage
-        ↓
-Storage event
-        ↓
-User 2 sees Milk × 2
-
-This allows multiple browser sessions/tabs to simulate collaborative shopping.
-
----
-
-10. Generating the Receipt
-
-After completing the shopping list:
-
-1. Open Generate Receipt.
-2. Review the cart summary.
-3. Check the total amount.
-4. Click Print Receipt.
-5. The application generates a clean printable receipt.
-
----
-
-11. Future Enhancements
-
-Possible future improvements include:
-
-- User authentication
-- Cloud database
-- Real-time collaboration between different devices
-- Online payment splitting
-- Individual expense tracking
-- Notifications
-- Product search
-- Cloud-based room storage
-
----
-
-12. Conclusion
-
-CartShare provides a simple collaborative solution for managing group shopping. It combines room-based collaboration, shared cart management, activity tracking, browser storage, responsive design, and printable receipts in a single web application.
+Submit your project link using the naming convention:
+`BatchID_FullName_CartShare`
