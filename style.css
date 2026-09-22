@@ -1,0 +1,176 @@
+/* ==========================================================================
+   CartShare — Shared Styles
+   Theme: Neon Lime + Peach/Baby Pink
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --lime: #CBFF3D;
+  --lime-dark: #A9E01B;
+  --peach: #FFC7D4;
+  --pink: #FF8FAE;
+  --pink-deep: #FF6B93;
+  --baby-pink: #FFF1F5;
+  --cream: #FFFBF7;
+  --ink: #241C1C;
+  --ink-soft: #6B5D5D;
+  --white: #FFFFFF;
+  --line: #F3D9DF;
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 9px;
+  --shadow-card: 0 10px 30px rgba(255, 107, 147, 0.14);
+  --shadow-pop: 0 6px 0 rgba(0, 0, 0, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background-color: var(--baby-pink);
+  background-image:
+    radial-gradient(circle, rgba(255,107,147,0.12) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.mono { font-family: 'Space Mono', monospace; }
+
+a { color: var(--pink-deep); text-decoration: none; }
+
+/* ---------- Brand mark ---------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+.brand-basket {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--lime);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-pop);
+  transform: rotate(-6deg);
+}
+.brand-name span { color: var(--pink-deep); }
+
+/* ---------- Buttons ---------- */
+.btn-lime {
+  background-color: var(--lime);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.65rem 1.7rem;
+  box-shadow: var(--shadow-pop);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn-lime:hover, .btn-lime:focus {
+  background-color: var(--lime-dark);
+  color: var(--ink);
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+}
+
+.btn-outline-pink {
+  background: transparent;
+  border: 2px solid var(--pink);
+  color: var(--pink-deep);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.65rem 1.7rem;
+  transition: all 0.12s ease;
+}
+.btn-outline-pink:hover {
+  background: var(--pink);
+  color: var(--white);
+  border-color: var(--pink);
+}
+
+.btn-pink-solid {
+  background: var(--pink-deep);
+  border: 2px solid var(--ink);
+  color: var(--white);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.65rem 1.7rem;
+  box-shadow: var(--shadow-pop);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn-pink-solid:hover {
+  background: #ff5686;
+  color: var(--white);
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.btn-ghost:hover { color: var(--pink-deep); }
+
+/* ---------- Cards ---------- */
+.card-soft {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-card);
+}
+
+.form-control, .form-select {
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--line);
+  padding: 0.65rem 0.9rem;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(255, 143, 174, 0.25);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+
+/* ---------- Utility chips ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--baby-pink);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.footer-note {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+/* ---------- Focus accessibility ---------- */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--pink-deep);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

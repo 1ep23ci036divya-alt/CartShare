@@ -1,0 +1,47 @@
+.receipt-sheet {
+  max-width: 480px;
+  font-family: 'Space Mono', monospace;
+}
+
+.dashed {
+  border: none;
+  border-top: 2px dashed var(--line);
+  margin: 1rem 0;
+}
+
+.receipt-table th {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  border-bottom: 1.5px solid var(--line);
+  font-weight: 700;
+}
+.receipt-table td {
+  border-bottom: none;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+.receipt-table td:last-child, .receipt-table th:last-child { text-align: right; }
+.receipt-table td:nth-child(2), .receipt-table th:nth-child(2) { text-align: center; }
+
+.total-line {
+  font-size: 1.15rem;
+}
+
+.added-by-list li {
+  font-size: 0.9rem;
+  padding: 0.2rem 0;
+}
+
+/* ---------- Print ---------- */
+@media print {
+  body {
+    background: none !important;
+  }
+  .no-print { display: none !important; }
+  .receipt-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 100%;
+  }
+  .container { padding: 0 !important; }
+}

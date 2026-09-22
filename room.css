@@ -1,0 +1,99 @@
+.room-code {
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  background: var(--lime);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.6rem;
+}
+
+.member-chip {
+  background: var(--baby-pink);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.cart-table thead th {
+  font-size: 0.78rem;
+  text-transform: none;
+  color: var(--ink-soft);
+  border-bottom: 2px solid var(--line);
+  font-weight: 700;
+}
+.cart-table td {
+  border-bottom: 1.5px solid var(--line);
+  vertical-align: middle;
+}
+.cart-table tbody tr:last-child td { border-bottom: none; }
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--baby-pink);
+  border-radius: 999px;
+  padding: 0.15rem 0.35rem;
+}
+.btn-qty {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--white);
+  font-weight: 700;
+  line-height: 1;
+}
+.btn-qty:hover { background: var(--lime); }
+.qty-value { min-width: 1.2rem; text-align: center; font-weight: 700; }
+
+.badge-added {
+  background: var(--peach);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.btn-remove {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+}
+.btn-remove:hover { transform: scale(1.15); }
+
+.empty-state {
+  color: var(--ink-soft);
+  border: 2px dashed var(--line);
+  border-radius: var(--radius-md);
+}
+
+.total-row {
+  border-top: 2px dashed var(--line);
+}
+
+.activity-card {
+  max-height: 640px;
+  overflow-y: auto;
+}
+.activity-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.activity-item {
+  display: flex;
+  gap: 0.7rem;
+  align-items: baseline;
+  padding-bottom: 0.7rem;
+  border-bottom: 1.5px dashed var(--line);
+  font-size: 0.9rem;
+}
+.activity-item:last-child { border-bottom: none; padding-bottom: 0; }
+.activity-time {
+  flex: none;
+  color: var(--pink-deep);
+  font-weight: 700;
+  font-size: 0.78rem;
+  font-family: 'Space Mono', monospace;
+}
+.activity-empty { color: var(--ink-soft); font-size: 0.9rem; }
